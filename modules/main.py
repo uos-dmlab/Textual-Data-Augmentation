@@ -5,7 +5,6 @@ import numpy as np
 import random
 import gc
 import wandb
-import umap
 import seaborn as sns
 import nltk
 import parmap
@@ -16,8 +15,6 @@ import seaborn as sns
 from tqdm import tqdm
 import pandas as pd
 from collections import defaultdict
-from functools import partial
-from pprint import pprint
 import warnings
 
 from load import load_dataset, generate_dataset, generate_dataloader
@@ -50,6 +47,7 @@ def prepare():
   nltk.download('stopwords')
   nltk.download('averaged_perceptron_tagger')
   nltk.download('wordnet')
+  nltk.download('words')
   
 
 

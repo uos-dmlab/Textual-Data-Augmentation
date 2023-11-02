@@ -10,7 +10,6 @@ from sklearn.preprocessing import normalize
 from functools import partial
 import parmap
 import pickle
-import sys
 import pandas as pd
 
 from transformers import MarianMTModel, MarianTokenizer

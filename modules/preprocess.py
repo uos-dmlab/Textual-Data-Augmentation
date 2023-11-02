@@ -7,11 +7,11 @@ from sklearn.feature_extraction.text  import TfidfVectorizer
 from sklearn.feature_selection import  SelectKBest, chi2
 from collections import defaultdict
 from transformers import AutoTokenizer
+from nltk.corpus import words
 import re
 import os
 import pickle
 from nltk.corpus import stopwords
-import enchant
 
 from embedding import merge_tokens, cleanse_word
 
@@ -45,11 +45,11 @@ def generate_keywords(args, essential, force=True):
     
     keywords = preprocess(train_dataset, all_categories, UNT, LNT, TARGET_NUM_KEYWORDS)
 
-    word_dictionary = enchant.Dict("en_US")
+    word_dictionary = set(words.words())
     g_correct = []
     g_wrong = []
     for word in keywords:
-      if word_dictionary.check(word):
+      if word in word_dictionary:
         g_correct.append(word)
       else:
         g_wrong.append(word)

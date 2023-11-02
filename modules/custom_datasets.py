@@ -225,14 +225,11 @@ class CuboidDataset(Dataset):
     is_augmented = self.is_augmented_list[idx]
     gan_augmented = self.gan_augmented_list[idx]
     doc_num = self.doc_nums[idx]
-    if self.use_cuboid:
-      if gan_augmented:
-        word_vector = load_pickle(self.augment_folder+str(doc_num))
-        cuboid = build_plain_cuboid_directly(self.essential, word_vector)
-      else:
-        cuboid = build_plain_cuboid(doc_num, self.essential, self.large_data, self.train_type)
+    if gan_augmented:
+      word_vector = load_pickle(self.augment_folder+str(doc_num))
+      cuboid = build_plain_cuboid_directly(self.essential, word_vector)
     else:
-      cuboid = build_plain_interpolated(self.doc_nums[idx], self.essential, self.large_data, self.train_type)
+      cuboid = build_plain_cuboid(doc_num, self.essential, self.large_data, self.train_type)
     
     
     return label, cuboid, is_augmented
